@@ -1,0 +1,15 @@
+services:
+  nginx:
+    container_name: ncomid_nginx
+    image: nginx
+    ports:
+      - "80:80"
+    restart: always
+    volumes:
+      - ../nginx/conf.dev/nginx.conf:/etc/nginx/conf.d/default.conf
+      - static_volume:/usr/src/app/back_static
+      - media_volume:/usr/src/app/back_media
+    depends_on:
+      - django
+    networks:
+      - nginx_network
